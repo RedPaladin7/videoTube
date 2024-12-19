@@ -58,8 +58,8 @@ const userSchema = new Schema(
 // function to encrypt the password
 userSchema.pre('save', async function(next){
     // this function will only run when saving or updating password
-    if(!this.modified('password')) return next()
-    this.password = bcrypt.hash(this.password, 10)
+    if(!this.isModified('password')) return next();
+    this.password = await bcrypt.hash(this.password, 10)
     
     next()
 })
