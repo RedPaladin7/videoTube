@@ -1,6 +1,7 @@
 import {Router} from 'express'
-import { registerUser } from '../controllers/user.controllers.js'
+import { registerUser, logoutUser } from '../controllers/user.controllers.js'
 import {upload} from '../middlewares/multer.middlewares.js'
+import {verifyJWT} from '../middlewares/auth.middlewares.js'
 
 const router = Router()
 
@@ -16,5 +17,12 @@ router.route('/register').post(
         }
     ]),
     registerUser)
+
+// secured routes
+// first the middleware is passed then the controller
+
+// middlewares and controller need to have next() to transfer control
+
+router.route('/logout').port(verifyJWT, logoutUser)
 
 export default router
