@@ -305,6 +305,10 @@ const updateUserCoverImage = asyncHandler(async(req, res)=>{
         },
         {new: true}
     ).select('-password -refreshToken')
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, user, 'Cover image updated successfully'))
 })
 
 export {
