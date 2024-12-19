@@ -1,6 +1,9 @@
 import mongoose, {Schema} from 'mongoose'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 // _id field is added automatically
 
@@ -27,13 +30,14 @@ const userSchema = new Schema(
             trim: true,
             index: true
         },
-        avator: {
+        avatar: {
             type: String, // url
             required: true
         },
         coverImage: {
             type: String,
         },
+        // avatar is required field while coverImage is not
         watchHistory: [
             {
                 type: Schema.Types.ObjectId,
